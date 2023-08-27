@@ -15,6 +15,6 @@ public class RedirectTest {
                 .get(link)
                 .andReturn();
 
-        System.out.println(response.headers().get("location").getValue());
+        System.out.println(response.headers().get("Location").getValue());
     }
 }
