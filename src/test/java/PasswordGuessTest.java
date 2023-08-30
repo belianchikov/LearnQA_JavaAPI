@@ -46,6 +46,7 @@ public class PasswordGuessTest {
 
             if (response1.getBody().asString().contains("You are authorized")) {
                 System.out.println("password after /check_auth_cookie: " + password);
+                break;
             }
 
         }
