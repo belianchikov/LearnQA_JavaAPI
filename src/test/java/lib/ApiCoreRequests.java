@@ -46,4 +46,13 @@ public class ApiCoreRequests {
                 .post(url)
                 .andReturn();
     }
+
+    @Step("Make a PUT-request")
+    public Response makePutRequest(String url, Map<String,String > data){
+        return given()
+                .filter(new AllureRestAssured())
+                .body(data)
+                .put(url)
+                .andReturn();
+    }
 }
