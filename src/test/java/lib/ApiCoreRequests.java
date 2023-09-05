@@ -11,7 +11,7 @@ import static io.restassured.RestAssured.*;
 
 public class ApiCoreRequests {
     @Step("Make a GET-request with token and auth cookie")
-    public Response makeGetRequest(String url, String token, String cookie){
+    public Response makeGetRequest(String url, String token, String cookie) {
         return given()
                 .filter(new AllureRestAssured())
                 .header(new Header("x-csrf-token", token))
@@ -21,7 +21,7 @@ public class ApiCoreRequests {
     }
 
     @Step("Make a GET-request with auth cookie only")
-    public Response makeGetRequestWithCookie(String url, String cookie){
+    public Response makeGetRequestWithCookie(String url, String cookie) {
         return given()
                 .filter(new AllureRestAssured())
                 .cookie("auth_sid", cookie)
@@ -30,7 +30,7 @@ public class ApiCoreRequests {
     }
 
     @Step("Make a GET-request with token only")
-    public Response makeGetRequestWithToken(String url, String token){
+    public Response makeGetRequestWithToken(String url, String token) {
         return given()
                 .filter(new AllureRestAssured())
                 .header(new Header("x-csrf-token", token))
@@ -39,7 +39,7 @@ public class ApiCoreRequests {
     }
 
     @Step("Make a POST-request")
-    public Response makePostRequest(String url, Map<String,String > data){
+    public Response makePostRequest(String url, Map<String, String> data) {
         return given()
                 .filter(new AllureRestAssured())
                 .body(data)
@@ -48,11 +48,22 @@ public class ApiCoreRequests {
     }
 
     @Step("Make a PUT-request")
-    public Response makePutRequest(String url, Map<String,String > data){
+    public Response makePutRequest(String url, Map<String, String> data) {
         return given()
                 .filter(new AllureRestAssured())
                 .body(data)
                 .put(url)
                 .andReturn();
     }
+
+    @Step("Make a DELETE-request")
+    public Response makeDeleteRequest(String url, String token, String cookie) {
+        return given()
+                .filter(new AllureRestAssured())
+                .header(new Header("x-csrf-token", token))
+                .cookie("auth_sid", cookie)
+                .delete(url)
+                .andReturn();
+    }
+
 }
